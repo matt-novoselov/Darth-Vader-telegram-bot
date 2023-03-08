@@ -1,3 +1,4 @@
+import asyncio
 from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
 import os
@@ -30,13 +31,14 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler(content_types=types.ContentTypes.TEXT)
 async def echo(message: types.Message):
-    full_response = ChatGPT.ProcessPrompt(message.text, message.from_user.id)
+    loop = asyncio.get_event_loop()
+    full_response = await loop.run_in_executor(None, ChatGPT.ProcessPrompt, message.text, message.from_user.id)
     reaction_index = full_response.rfind('%%')
     extracted_text = full_response[:reaction_index]
     extracted_emoji = full_response[reaction_index + 2:]
     await message.answer(extracted_text)
     if extracted_emoji != 'neutral':
-        if Chance(30):  # 30%
+        if Chance(35):  # 35%
             try:
                 with open(f'Stickers/{extracted_emoji}.webp', 'rb') as photo:
                     await message.answer_document(photo)
