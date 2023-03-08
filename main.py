@@ -30,7 +30,7 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler(content_types=types.ContentTypes.TEXT)
 async def echo(message: types.Message):
-    full_response = ChatGPT.ProcessPrompt(message.text,message.from_user.id)
+    full_response = ChatGPT.ProcessPrompt(message.text, message.from_user.id)
     reaction_index = full_response.rfind('%')
     extracted_text = full_response[:reaction_index]
     extracted_emoji = full_response[reaction_index + 1:]
