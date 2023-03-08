@@ -15,7 +15,7 @@ def Chance(chance):
 
 @dp.message_handler(commands='start')
 async def send_welcome(message: types.Message):
-    await message.reply("Приветствую тебя. Я - Дарт Вейдер, повелитель тёмной стороны Силы.")
+    await message.reply(ChatGPT.standart_greeting)
     with open('Stickers/greet.webp', 'rb') as photo:
         await message.answer_document(photo)
 
@@ -35,13 +35,14 @@ async def echo(message: types.Message):
     extracted_text = full_response[:reaction_index]
     extracted_emoji = full_response[reaction_index + 2:]
     await message.answer(extracted_text)
-    if Chance(40) and extracted_emoji != 'neutral':
-        try:
-            with open(f'Stickers/{extracted_emoji}.webp', 'rb') as photo:
-                await message.answer_document(photo)
-        except:
-            print("[!] Error. I was unable to open and send sticker")
-            pass
+    if extracted_emoji != 'neutral':
+        if Chance(40):  # 40%
+            try:
+                with open(f'Stickers/{extracted_emoji}.webp', 'rb') as photo:
+                    await message.answer_document(photo)
+            except:
+                print("[!] Error. I was unable to open and send sticker")
+                pass
 
 
 if __name__ == '__main__':
