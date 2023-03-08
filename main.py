@@ -31,13 +31,17 @@ async def send_welcome(message: types.Message):
 @dp.message_handler(content_types=types.ContentTypes.TEXT)
 async def echo(message: types.Message):
     full_response = ChatGPT.ProcessPrompt(message.text, message.from_user.id)
-    reaction_index = full_response.rfind('%')
+    reaction_index = full_response.rfind('%%')
     extracted_text = full_response[:reaction_index]
-    extracted_emoji = full_response[reaction_index + 1:]
+    extracted_emoji = full_response[reaction_index + 2:]
     await message.answer(extracted_text)
     if Chance(40) and extracted_emoji != 'neutral':
-        with open(f'Stickers/{extracted_emoji}.webp', 'rb') as photo:
-            await message.answer_document(photo)
+        try:
+            with open(f'Stickers/{extracted_emoji}.webp', 'rb') as photo:
+                await message.answer_document(photo)
+        except:
+            print("[!] Error. I was unable to open and send sticker")
+            pass
 
 
 if __name__ == '__main__':
