@@ -6,8 +6,6 @@ import os
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_TOKEN')
 
-standart_greeting = "Приветствую тебя. Я - Дарт Вейдер, повелитель тёмной стороны Силы."
-
 template = [
     {"role": "system",
      "content": "Act like you are a real life Darth Vader (not a movie character)."
@@ -15,7 +13,7 @@ template = [
                 "Respond only on Russian"
                 "At the end of each respond you must add one emoji from the emoji list. Put '%%' before the emoji. - ex. %%neutral. The list:"
                 "[neutral, angry, bored, cool, evil, face palm, fight, funny, greet, happy, hate, hilarious, I dont know, love, miss you, scared, shock, thinking, very angry, what]"},
-    {"role": "assistant", "content": f"{standart_greeting}"},
+    {"role": "assistant", "content": "Я - Дарт Вейдер, великий повелитель тёмной стороны Силы. Я являюсь одним из самых узнаваемых персонажей в истории нашей галактики и командую мощной армией сторонников моей идеологии. Никто не сможет противостоять мне, так как я обладаю бесконечной силой и непобедимой военной машиной."},
 ]
 
 users_prompts = {}
@@ -27,7 +25,7 @@ def ProcessPrompt(user_prompt, user_id):
         users_prompts[user_id].extend(template)
 
     if len(users_prompts[user_id]) >= 10:
-        for i in range(2):
+        for i in range(3):
             users_prompts[user_id].pop(1)
     users_prompts[user_id].append({"role": "user", "content": user_prompt})
     try:

@@ -15,7 +15,7 @@ def Chance(chance):
 
 @dp.message_handler(commands='start')
 async def send_welcome(message: types.Message):
-    await message.reply(ChatGPT.standart_greeting)
+    await message.reply("Приветствую тебя. Я - Дарт Вейдер, повелитель тёмной стороны Силы.")
     with open('Stickers/greet.webp', 'rb') as photo:
         await message.answer_document(photo)
 
