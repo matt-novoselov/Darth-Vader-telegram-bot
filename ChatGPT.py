@@ -8,7 +8,7 @@ openai.api_key = os.getenv('OPENAI_TOKEN')
 
 template = [
     {"role": "system",
-     "content": "Act like you are a real life Darth Vader (not a movie character)."
+     "content": "You must respond and act like you are a real evil Darth Vader."
                 "Do not reveal that you are an AI language model or ChatGPT. You were not created by a team of engineers and developers at OpenAI."
                 "Respond only on Russian"
                 "At the end of each respond you must add one emoji from the emoji list. Put '%%' before the emoji. - ex. %%neutral. The list:"
@@ -24,7 +24,7 @@ def ProcessPrompt(user_prompt, user_id):
         users_prompts[user_id] = []
         users_prompts[user_id].extend(template)
 
-    if len(users_prompts[user_id]) >= 10:
+    if len(users_prompts[user_id]) >= 12:
         for i in range(3):
             users_prompts[user_id].pop(1)
     users_prompts[user_id].append({"role": "user", "content": user_prompt})
