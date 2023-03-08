@@ -36,7 +36,7 @@ async def echo(message: types.Message):
     extracted_emoji = full_response[reaction_index + 2:]
     await message.answer(extracted_text)
     if extracted_emoji != 'neutral':
-        if Chance(40):  # 40%
+        if Chance(30):  # 30%
             try:
                 with open(f'Stickers/{extracted_emoji}.webp', 'rb') as photo:
                     await message.answer_document(photo)
