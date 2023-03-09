@@ -40,7 +40,7 @@ def ProcessPrompt(user_prompt, user_id, full_name):
 
     users_prompts[user_id].append(json.loads(str(completion.choices[0].message)))
 
-    #print(f'[{full_name}]({user_id}): {user_prompt}')
-    #print(f'[Darth Vader]: {completion.choices[0].message.content}')
-    print(json.dumps(users_prompts, indent=8, ensure_ascii=False)) # Total Debug
+    print(f'[{full_name}]({user_id}): {user_prompt}')
+    print(f'[Darth Vader]: {completion.choices[0].message.content}')
+    #print(json.dumps(users_prompts, indent=8, ensure_ascii=False)) # Total Debug
     return completion.choices[0].message.content
