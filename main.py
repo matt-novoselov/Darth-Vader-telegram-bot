@@ -31,12 +31,13 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler(content_types=types.ContentTypes.TEXT)
 async def echo(message: types.Message):
+    full_name = message.from_user.full_name
     loop = asyncio.get_event_loop()
-    full_response = await loop.run_in_executor(None, ChatGPT.ProcessPrompt, message.text, message.from_user.id)
+    full_response = await loop.run_in_executor(None, ChatGPT.ProcessPrompt, message.text, message.from_user.id, full_name)
     reaction_index = full_response.rfind('%%')
     extracted_text = full_response[:reaction_index]
     extracted_emoji = full_response[reaction_index + 2:]
-    await message.answer(extracted_text)
+    await message.reply(extracted_text)
     if extracted_emoji != 'neutral':
         if Chance(35):  # 35%
             try:
