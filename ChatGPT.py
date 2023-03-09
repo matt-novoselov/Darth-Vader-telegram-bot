@@ -19,15 +19,17 @@ template = [
 users_prompts = {}
 
 
+def ClearAndCreate(user_id,full_name):
+    users_prompts[user_id] = []
+    users_prompts[user_id].extend(template)
+    users_prompts[user_id].append({"role": "system", "content": f"User name is: {full_name}."})
+
 def ProcessPrompt(user_prompt, user_id, full_name):
     if user_id not in users_prompts:
-        users_prompts[user_id] = []
-        users_prompts[user_id].extend(template)
-        users_prompts[user_id][0]["content"] += f". User name is: {full_name}."
-
-    if len(users_prompts[user_id]) >= 12:
+        ClearAndCreate(user_id, full_name)
+    if len(users_prompts[user_id]) >= 13:
         for i in range(2):
-            users_prompts[user_id].pop(2)
+            users_prompts[user_id].pop(3)
     users_prompts[user_id].append({"role": "user", "content": user_prompt})
     try:
         completion = openai.ChatCompletion.create(

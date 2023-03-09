@@ -24,8 +24,8 @@ async def send_welcome(message: types.Message):
 @dp.message_handler(commands='clear')
 async def send_welcome(message: types.Message):
     user_id = message.from_user.id
-    ChatGPT.users_prompts[user_id] = []
-    ChatGPT.users_prompts[user_id].extend(ChatGPT.template)
+    full_name = message.from_user.full_name
+    ChatGPT.ClearAndCreate(user_id, full_name)
     await message.reply("История сообщений была очищена")
 
 
