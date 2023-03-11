@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import openai
 import json
 import os
+from datetime import date
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_TOKEN')
@@ -22,7 +23,7 @@ users_prompts = {}
 def ClearAndCreate(user_id,full_name):
     users_prompts[user_id] = []
     users_prompts[user_id].extend(template)
-    users_prompts[user_id].append({"role": "system", "content": f"User name is: {full_name}."})
+    users_prompts[user_id].append({"role": "system", "content": f"Meta Data: User name is {full_name}, Current date is {date.today()}"})
 
 def ProcessPrompt(user_prompt, user_id, full_name):
     if user_id not in users_prompts:
