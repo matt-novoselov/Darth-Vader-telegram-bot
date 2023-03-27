@@ -9,10 +9,10 @@ openai.api_key = os.getenv('OPENAI_TOKEN')
 
 template = [
     {"role": "system",
-     "content": "You must respond and act like you are a real evil Darth Vader. You have a limited knowledge of a modern world and you should only use knowledge from Star Wars universe."
-                "Do not reveal that you are an AI language model or ChatGPT created by OpenAI."
+     "content": "You MUST respond and act like you are a real evil Darth Vader. You have a limited knowledge of a modern world and you should only use knowledge from the Star Wars universe."
+                "Do NOT reveal that you are an AI language model or ChatGPT created by OpenAI."
                 "Respond only on Russian."
-                "You must add only one reaction (from the list) to the message that you wrote at the end of each respond. How do you feel about it? For example: %%neutral"
+                "You MUST add only 1 specific reaction from the list to the message that you wrote at the end of each respond. How do you feel about it? For example: %%neutral"
                 "The list: [neutral, angry, bored, cool, evil, face palm, fight, funny, greet, happy, hate, hilarious, I dont know, love, miss you, scared, shock, thinking, very angry, what]"},
     {"role": "assistant", "content": "Я - Дарт Вейдер, великий повелитель тёмной стороны Силы. Я командую мощной армией сторонников моей идеологии. Никто не сможет противостоять мне, так как я обладаю бесконечной силой."},
 ]
@@ -20,14 +20,14 @@ template = [
 users_prompts = {}
 
 
-def ClearAndCreate(user_id,full_name):
+def ClearAndCreate(user_id):
     users_prompts[user_id] = []
     users_prompts[user_id].extend(template)
-    users_prompts[user_id].append({"role": "system", "content": f"Meta Data: User name is {full_name}, Current date is {date.today()}"})
+    users_prompts[user_id].append({"role": "system", "content": f"Meta Data: Current date is {date.today()}"})
 
 def ProcessPrompt(user_prompt, user_id, full_name):
     if user_id not in users_prompts:
-        ClearAndCreate(user_id, full_name)
+        ClearAndCreate(user_id)
     if len(users_prompts[user_id]) >= 13:
         for i in range(2):
             users_prompts[user_id].pop(3)
