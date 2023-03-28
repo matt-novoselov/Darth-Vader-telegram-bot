@@ -4,4 +4,4 @@ Source code of Aiogram and [ChatGPT API](https://openai.com/blog/introducing-cha
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/p6Y-1E?referralCode=RmyABJ)
 
-[![Telegram Bot](https://raw.githubusercontent.com/matt-novoselov/Darth-Vader-telegram-bot/main/button_telegram.svg)](https://t.me/DarthVaderChat_bot)
+[![Telegram Bot](https://raw.githubusercontent.com/matt-novoselov/SystemFiles/main/telegram_button.svg)](https://t.me/DarthVaderChat_bot)
