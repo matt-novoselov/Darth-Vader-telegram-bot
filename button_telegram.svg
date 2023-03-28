@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 183 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        letter-spacing: -.11em;
+      }
+
+      .cls-3 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-4 {
+        fill: #c8daea;
+      }
+
+      .cls-5 {
+        fill: #a9c9dd;
+      }
+
+      .cls-6 {
+        fill: #fff;
+        font-family: EloquiaDisplay-ExtraBold, 'Eloquia Display';
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-8 {
+        letter-spacing: -.04em;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0" y1="20" x2="183" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#37aee2"/>
+      <stop offset="1" stop-color="#1e96c8"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="1052.17" y1="-55.67" x2="1052.58" y2="-55" gradientTransform="translate(-10934.65 600.99) scale(10.42)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eff7fc"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-7" d="m0,6C0,2.69,2.69,0,6,0h171c3.31,0,6,2.69,6,6v28c0,3.31-2.69,6-6,6H6c-3.31,0-6-2.69-6-6V6Z"/>
+  <path id="path2993" class="cls-4" d="m20.07,29.98c-.67,0-.55-.26-.8-.9l-1.97-6.5,12.24-7.64,1.44.38-1.19,3.25-9.72,11.41Z"/>
+  <path id="path2989" class="cls-5" d="m20.07,29.98c.52,0,.74-.24,1.04-.52.45-.43,6.23-6.05,6.23-6.05l-3.54-.86-3.29,2.08-.43,5.19v.17Z"/>
+  <path id="path2991" class="cls-1" d="m20.41,24.69l8.37,6.17c.95.52,1.64.26,1.88-.88l3.41-16.05c.35-1.4-.54-2.02-1.45-1.61l-19.99,7.71c-1.37.55-1.35,1.31-.24,1.64l5.14,1.61,11.88-7.49c.55-.35,1.07-.16.66.22l-9.65,8.66Z"/>
+  <text class="cls-6" transform="translate(54.32 25.32)"><tspan class="cls-8" x="0" y="0">T</tspan><tspan x="8.98" y="0">ry in </tspan><tspan class="cls-2" x="42.09" y="0">T</tspan><tspan x="50.05" y="0">eleg</tspan><tspan class="cls-3" x="80.8" y="0">r</tspan><tspan x="86.58" y="0">am</tspan></text>
+</svg>
