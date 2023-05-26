@@ -1,16 +1,15 @@
 from dotenv import load_dotenv
 import openai
 import os
-import subprocess
+import soundfile as sf
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_TOKEN')
 
 
 async def Transcribe(file_id):
-    subprocess.call(['ffmpeg', '-i', f"Temp/{file_id}.ogg", f"Temp/{file_id}.wav"],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.STDOUT,)
+    data, samplerate = sf.read(f"Temp/{file_id}.ogg")
+    sf.write(f"Temp/{file_id}.wav", data, samplerate, format='WAV', subtype='PCM_16')
 
     try:
         audio_file = open(f"Temp/{file_id}.wav", "rb")
