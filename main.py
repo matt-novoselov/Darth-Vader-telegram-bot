@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 import ChatGPT
 import random
+import whisper
 
 load_dotenv()
 bot = Bot(token=os.getenv('TOKEN'))
@@ -28,11 +29,11 @@ async def send_welcome(message: types.Message):
     await message.reply("История сообщений была очищена")
 
 
-@dp.message_handler(content_types=types.ContentTypes.TEXT)
-async def echo(message: types.Message):
+async def MakeRequest(message, text_message):
     full_name = message.from_user.full_name
     loop = asyncio.get_event_loop()
-    full_response = await loop.run_in_executor(None, ChatGPT.ProcessPrompt, message.text, message.from_user.id, full_name)
+    full_response = await loop.run_in_executor(None, ChatGPT.ProcessPrompt, text_message, message.from_user.id,
+                                               full_name)
     reaction_index = full_response.rfind('%%')
     extracted_text = full_response[:reaction_index]
     extracted_emoji = full_response[reaction_index + 2:]
@@ -45,6 +46,26 @@ async def echo(message: types.Message):
             except:
                 print("[!] Error. I was unable to open and send sticker")
                 pass
+
+
+@dp.message_handler(content_types=types.ContentTypes.TEXT)
+async def echo(message: types.Message):
+    await MakeRequest(message,message.text)
+
+
+@dp.message_handler(content_types=types.ContentType.VOICE)
+async def voice_message_handler(message: types.Message):
+    voice = await message.voice.get_file()
+    file = await bot.get_file(voice.file_id)
+    file_path = file.file_path
+
+    await bot.download_file(file_path, destination=f"Temp/{voice.file_id}.ogg")
+    transcribed_text = await whisper.Transcribe(voice.file_id)
+    if transcribed_text:
+        print(f"[v] Voice message transcribed successfully: {transcribed_text}")
+        await MakeRequest(message, transcribed_text)
+    os.remove(f"Temp/{voice.file_id}.ogg")
+    os.remove(f"Temp/{voice.file_id}.wav")
 
 
 if __name__ == '__main__':
