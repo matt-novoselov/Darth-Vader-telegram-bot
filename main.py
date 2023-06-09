@@ -17,7 +17,9 @@ def Chance(chance):
 
 @dp.message_handler(commands='start')
 async def send_welcome(message: types.Message):
-    await message.reply("Приветствую тебя. Я - Дарт Вейдер, повелитель тёмной стороны Силы.")
+    await message.reply("Приветствую тебя. Я - Дарт Вейдер, повелитель тёмной стороны Силы."
+                        "\n\nНапиши мне или просто отправь голосовое сообщение - я отвечу."
+                        "\n\nЧтобы очистить историю, используй /clear")
     with open('Stickers/greet.webp', 'rb') as photo:
         await message.answer_document(photo)
 
