@@ -17,9 +17,9 @@ def Chance(chance):
 
 @dp.message_handler(commands='start')
 async def send_welcome(message: types.Message):
-    await message.reply("Приветствую тебя. Я - Дарт Вейдер, повелитель тёмной стороны Силы."
-                        "\n\nНапиши мне или просто отправь голосовое сообщение - я отвечу."
-                        "\n\nЧтобы очистить историю, используй /clear")
+    await message.reply("Hello, I am a Darth Vader, great master of the dark side of the Force."
+                        "\n\nSend me a text or voice message - I will reply"
+                        "\n\nUse /clear to clear message history")
     with open('Stickers/greet.webp', 'rb') as photo:
         await message.answer_document(photo)
 
@@ -28,7 +28,7 @@ async def send_welcome(message: types.Message):
 async def send_welcome(message: types.Message):
     user_id = message.from_user.id
     ChatGPT.ClearAndCreate(user_id)
-    await message.reply("История сообщений была очищена")
+    await message.reply("Message history was cleared")
 
 
 async def MakeRequest(message, text_message):
